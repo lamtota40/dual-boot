@@ -1,9 +1,9 @@
 #!/bin/bash
 #fix
 #
-# windows 10GB
-# linux 20GB
-# data 10GB
+# windows 15GB
+# linux 15GB
+# data 8GB
 # swap 3GB
 
 sudo apt install grml-rescueboot zsh -y
