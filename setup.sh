@@ -34,9 +34,15 @@ sudo grub-reboot "$GRML_ENTRY"
 
 
 ########################################################
-sudo parted /dev/vda --script mklabel msdos
 
-sudo parted /dev/vda --script unit GiB mkpart primary ntfs 1 14
-sudo parted /dev/vda --script unit GiB mkpart primary btrfs 14 29
-sudo parted /dev/vda --script unit GiB mkpart primary ntfs 29 39
-sudo parted /dev/vda --script unit GiB mkpart primary linux-swap 39 41
+sudo parted /dev/vda
+unit GiB
+print
+rm 3
+mklabel msdos
+mkpart primary ntfs 1 14
+mkpart primary ext4 14 29
+set 2 boot on
+mkpart primary ntfs 29 39
+mkpart primary linux-swap 39 41
+quit
