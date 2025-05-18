@@ -46,3 +46,34 @@ set 2 boot on
 mkpart primary ntfs 29 39
 mkpart primary linux-swap 39 41
 quit
+
+# === KONFIGURASI ===
+ISO_NAME="win-xp.iso"
+TARGET_PART="/dev/vda3"
+TARGET_DISK="/dev/vda"
+MOUNT_DIR="/mnt/vda3"
+GRUB_DIR="$MOUNT_DIR/boot/grub"
+MEMDISK_SRC="/usr/lib/syslinux/memdisk"  # Path default di GRML
+
+mkfs.vfat -F 32 "$TARGET_PART" || exit 1
+mkdir -p "$MOUNT_DIR"
+mount "$TARGET_PART" "$MOUNT_DIR" || exit 1
+if [ ! -f "$ISO_NAME" ]; then
+  echo "!! File $ISO_NAME tidak ditemukan di direktori saat ini!"
+  exit 1
+fi
+cp "$ISO_NAME" "$MOUNT_DIR/"
+cp "$MEMDISK_SRC" "$MOUNT_DIR/" || { echo "!! memdisk tidak ditemukan!"; exit 1; }
+
+mkdir -p "$GRUB_DIR"
+cat > "$GRUB_DIR/grub.cfg" <<EOF
+set timeout=5
+set default=0
+
+menuentry "Install Windows XP dari ISO" {
+    linux16 /memdisk iso raw
+    initrd16 /$ISO_NAME
+}
+EOF
+
+grub-install --target=i386-pc --boot-directory="$MOUNT_DIR/boot" "$TARGET_DISK" || exit 1
