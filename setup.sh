@@ -70,3 +70,6 @@ menuentry "Install Windows XP dari ISO" {
 EOF
 
 grub-install --target=i386-pc --boot-directory="/mnt/vda3/boot" "/dev/vda" || exit 1
+############################################
+sudo apt update
+sudo apt install grub-pc-bin grub-common syslinux dosfstools
