@@ -2,25 +2,22 @@
 
 sudo apt update
 sudo apt upgrade -y
+#desktop
 sudo apt install lxde xinit xorg lightdm -y
+#desktop until
+sudo apt install pcmanfm lxterminal leafpad lxtask network-manager-gnome file-roller -y
 
-sudo apt install pcmanfm lxterminal leafpad lxtask network-manager-gnome firefox file-roller vlc -y
+sudo add-apt-repository -y ppa:mozillateam/ppa
+sudo apt update
+sudo apt install firefox -y
 
-
-
-VNC_PASS="pas123"
-https://archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/mini.iso
-sudo apt install -y vlc onboard gparted snapd zsh telegram-desktop curl jq nautilus
+#desktop until2
+sudo apt install -y onboard gparted snapd zsh curl jq
 sudo snap install snap-store
 sudo snap install notepad-plus-plus
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 
-
-sudo pkill firefox || true
-sudo add-apt-repository -y ppa:mozillateam/ppa
-sudo apt update
-sudo apt install firefox -y
 
 sudo apt install lightdm openbox-lxde-session -y
 sudo dpkg-reconfigure lightdm
@@ -81,3 +78,6 @@ sudo systemctl disable cups
 #sudo systemctl stop lightdm
 #sudo systemctl disable lightdm
 #reboot
+
+VNC_PASS="pas123"
+https://archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/mini.iso
