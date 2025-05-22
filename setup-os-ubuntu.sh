@@ -4,6 +4,9 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install lxde xinit xorg lightdm -y
 
+sudo apt install pcmanfm lxterminal leafpad lxtask network-manager-gnome firefox file-roller vlc -y
+
+
 
 VNC_PASS="pas123"
 https://archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/mini.iso
