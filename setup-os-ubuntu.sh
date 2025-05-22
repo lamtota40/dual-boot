@@ -1,10 +1,12 @@
-https://archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/mini.iso
-
-
 #!/bin/bash
 
-VNC_PASS="pas123"
+sudo apt update
+sudo apt upgrade -y
+sudo apt install lxde xinit xorg lightdm -y
 
+
+VNC_PASS="pas123"
+https://archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/mini.iso
 sudo apt install -y vlc onboard gparted snapd zsh telegram-desktop curl jq nautilus
 sudo snap install snap-store
 sudo snap install notepad-plus-plus
