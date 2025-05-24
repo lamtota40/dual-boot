@@ -2,7 +2,7 @@
 
 sudo apt update
 sudo apt upgrade -y
-sudo apt instalk openssh-server -y
+sudo apt install openssh-server -y
 #desktop
 sudo apt install lxde xinit xorg lightdm -y
 #desktop until
