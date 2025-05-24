@@ -23,6 +23,10 @@ sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 sudo systemctl restart ssh
 
+sudo systemctl enable NetworkManager
+sudo systemctl start NetworkManager
+
+
 sudo apt install lightdm openbox-lxde-session -y
 sudo dpkg-reconfigure lightdm
 cat /etc/X11/default-display-manager
