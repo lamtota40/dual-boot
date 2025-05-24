@@ -6,7 +6,7 @@ sudo apt install openssh-server -y
 #desktop
 sudo apt install lxde xinit xorg lightdm -y
 #desktop until
-sudo apt install pcmanfm lxterminal leafpad lxtask network-manager-gnome file-roller -y
+sudo apt install pcmanfm lxterminal leafpad lxtask network-manager-gnome file-roller xdg-utils -y
 
 sudo add-apt-repository -y ppa:mozillateam/ppa
 sudo apt update
@@ -14,6 +14,7 @@ sudo apt install firefox -y
 
 #desktop until2
 sudo apt install -y onboard gparted snapd zsh curl jq
+sudo apt install gnome-software-plugin-snap -y
 sudo snap install snap-store
 sudo snap install notepad-plus-plus
 xdg-mime default vlc.desktop video/mp4
