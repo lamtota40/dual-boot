@@ -17,17 +17,16 @@ sudo apt install -y onboard gparted snapd zsh curl jq
 sudo apt install gnome-software-plugin-snap -y
 sudo snap install snap-store
 sudo snap install notepad-plus-plus
-xdg-mime default vlc.desktop video/mp4
-xdg-mime default vlc.desktop video/x-matroska
+#xdg-mime default vlc.desktop video/mp4
+#xdg-mime default vlc.desktop video/x-matroska
 
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 sudo systemctl restart ssh
 
-# Aktifkan network manager dan lightdm
+# Aktifkan network manager
 sudo systemctl enable NetworkManager
 sudo systemctl start NetworkManager
-sudo systemctl enable lightdm
 
 # Autoremove & reboot
 sudo apt autoremove -y
