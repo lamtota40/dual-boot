@@ -2,6 +2,7 @@
 
 sudo apt update
 sudo apt upgrade -y
+sudo apt instalk openssh-server -y
 #desktop
 sudo apt install lxde xinit xorg lightdm -y
 #desktop until
@@ -18,6 +19,9 @@ sudo snap install notepad-plus-plus
 xdg-mime default vlc.desktop video/mp4
 xdg-mime default vlc.desktop video/x-matroska
 
+sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
+sudo systemctl restart ssh
 
 sudo apt install lightdm openbox-lxde-session -y
 sudo dpkg-reconfigure lightdm
