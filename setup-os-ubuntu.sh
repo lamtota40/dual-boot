@@ -23,9 +23,15 @@ sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 sudo systemctl restart ssh
 
+# Aktifkan network manager dan lightdm
 sudo systemctl enable NetworkManager
 sudo systemctl start NetworkManager
+sudo systemctl enable lightdm
 
+# Autoremove & reboot
+sudo apt autoremove -y
+
+sudo reboot
 
 sudo apt install lightdm openbox-lxde-session -y
 sudo dpkg-reconfigure lightdm
