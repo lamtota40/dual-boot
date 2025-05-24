@@ -4,9 +4,9 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install openssh-server -y
 #desktop
-sudo apt install lxde xinit xorg lightdm -y
+sudo apt install -y lxde xinit xorg lightdm openbox-lxde-session
 #desktop until
-sudo apt install pcmanfm lxterminal leafpad lxtask network-manager-gnome file-roller xdg-utils -y
+sudo apt install pcmanfm lxterminal leafpad lxtask network-manager-gnome file-roller -y
 
 sudo add-apt-repository -y ppa:mozillateam/ppa
 sudo apt update
@@ -17,8 +17,6 @@ sudo apt install -y onboard gparted snapd zsh curl jq
 sudo apt install gnome-software-plugin-snap -y
 sudo snap install snap-store
 sudo snap install notepad-plus-plus
-#xdg-mime default vlc.desktop video/mp4
-#xdg-mime default vlc.desktop video/x-matroska
 
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
