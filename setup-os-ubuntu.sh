@@ -57,11 +57,11 @@ sudo bash -c "cat > ~/.vnc/xstartup" <<EOF
 xrdb \$HOME/.Xresources
 startlxde &
 EOF
-chmod +x ~/.vnc/xstartup
+sudo chmod +x ~/.vnc/xstartup
 
 sudo vncserver -kill :*
 
-vncserver :1 -geometry 1024x768 -depth 16 -dpi 96 -localhost no
+sudo vncserver :1 -geometry 1024x768 -depth 16 -dpi 96 -localhost no
 
 
 sudo apt install lightdm openbox-lxde-session -y
