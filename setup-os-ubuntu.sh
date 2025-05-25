@@ -44,12 +44,24 @@ sudo systemctl disable lightdm
 sudo systemctl stop lightdm
 sudo apt install tigervnc-standalone-server tigervnc-common -y
 
+# Setup password VNC dan buat sesi awal
+sudo vncserver ---pretend-input-tty <<EOF
+$VNC_PASS
+$VNC_PASS
+n
+EOF
 
+mkdir -p "$HOME_DIR/.vnc"
+cat <<EOF > ~/.vnc/xstartup
+#!/bin/bash
+xrdb \$HOME/.Xresources
+startlxde &
+EOF
+chmod +x ~/.vnc/xstartup
 
+sudo vncserver -kill :*
 
-
-
-
+vncserver :1 -geometry 1024x768 -depth 16 -dpi 96 -localhost no
 
 
 sudo apt install lightdm openbox-lxde-session -y
