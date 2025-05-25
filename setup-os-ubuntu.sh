@@ -52,7 +52,7 @@ n
 EOF
 
 mkdir -p "$HOME_DIR/.vnc"
-cat <<EOF > ~/.vnc/xstartup
+sudo bash -c "cat > ~/.vnc/xstartup" <<EOF
 #!/bin/bash
 xrdb \$HOME/.Xresources
 startlxde &
