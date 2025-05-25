@@ -4,7 +4,7 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install openssh-server -y
 #desktop
-sudo apt install --no-install-recommends xinit xorg lightdm openbox lxde-core lxsession lxpanel pcmanfm lxterminal
+sudo apt install --no-install-recommends xinit xorg lightdm openbox lxde-core lxsession lxpanel pcmanfm lxterminal file-roller
 #sudo apt install -y lxde xinit xorg lightdm openbox-lxde-session
 
 echo "exec startlxde" > ~/.xsession
@@ -16,9 +16,6 @@ sudo bash -c "cat > /etc/lightdm/lightdm.conf" <<EOF
 [Seat:*]
 user-session=LXDE
 EOF
-
-#desktop until
-sudo apt install pcmanfm lxterminal lxtask file-roller -y
 
 sudo add-apt-repository -y ppa:mozillateam/ppa
 sudo apt update
