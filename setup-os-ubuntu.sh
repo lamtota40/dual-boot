@@ -5,6 +5,17 @@ sudo apt upgrade -y
 sudo apt install openssh-server -y
 #desktop
 sudo apt install -y lxde xinit xorg lightdm openbox-lxde-session
+
+echo "exec startlxde" > ~/.xsession
+chmod +x ~/.xsession
+if [ ! -f /etc/lightdm/lightdm.conf.bak ]; then
+    sudo cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
+fi
+sudo bash -c "cat > /etc/lightdm/lightdm.conf" <<EOF
+[Seat:*]
+user-session=LXDE
+EOF
+
 #desktop until
 sudo apt install pcmanfm lxterminal leafpad lxtask network-manager-gnome file-roller -y
 
