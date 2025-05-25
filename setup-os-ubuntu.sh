@@ -4,8 +4,10 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install openssh-server -y
 #desktop
-sudo apt install --no-install-recommends xinit xorg lightdm openbox lxde-core lxsession lxpanel pcmanfm lxterminal file-roller -y
+#sudo apt install --no-install-recommends xinit xorg lightdm openbox lxsession lxpanel pcmanfm lxterminal file-roller -y
 #sudo apt install -y lxde xinit xorg lightdm openbox-lxde-session
+sudo apt install -y lxde-core xinit xorg lightdm openbox lxsession lxpanel pcmanfm lxterminal file-roller -y
+
 
 echo "exec startlxde" > ~/.xsession
 chmod +x ~/.xsession
