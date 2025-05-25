@@ -61,68 +61,35 @@ sudo chmod +x ~/.vnc/xstartup
 
 sudo vncserver -kill :*
 
-sudo vncserver :1 -geometry 1024x768 -depth 16 -dpi 96 -localhost no
+# Matikan semua sesi VNC lama & Hapus semua log dan cache
+sudo vncserver -kill :*
+sudo rm -f "$HOME_DIR/.vnc/"*.pid
+sudo rm -f "$HOME_DIR/.vnc/"*.log
+sudo rm -f "$HOME_DIR/.vnc/"*.sock
 
-
-sudo apt install lightdm openbox-lxde-session -y
-sudo dpkg-reconfigure lightdm
-cat /etc/X11/default-display-manager
-sudo apt remove gdm3 -y
-sudo apt install x11vnc net-tools -y
-x11vnc -storepasswd <<EOF
-$VNC_PASS
-$VNC_PASS
-y
-EOF
-sudo tee /etc/systemd/system/x11vnc.service > /dev/null <<EOF
+# Buat systemd service untuk vncserver@.service dengan dynamic User
+sudo tee /etc/systemd/system/vncserver@.service > /dev/null <<EOF
 [Unit]
-Description=VNC Server for X11
-Requires=display-manager.service
+Description=Start TigerVNC server at startup for user $active_user (display :%i)
+After=syslog.target network.target
 
 [Service]
-ExecStart=/usr/bin/x11vnc -display :0 -auth guess -forever -loop -noxdamage -repeat -rfbauth $HOME/.vnc/passwd -rfbport 5900 -shared
-ExecStop=/usr/bin/killall x11vnc
-Restart=on-failure
-RestartSec=2
+Type=forking
+User=$active_user
+PAMName=login
+PIDFile=$HOME_DIR/.vnc/%H:%i.pid
+ExecStartPre=-/usr/bin/vncserver -kill :* > /dev/null 2>&1
+ExecStart=/usr/bin/vncserver :%i -geometry 1024x768 -depth 16 -dpi 96 -localhost no
+ExecStop=/usr/bin/vncserver -kill :*
 
 [Install]
 WantedBy=multi-user.target
 EOF
 
-sudo systemctl daemon-reexec
+# Reload systemd dan aktifkan service
 sudo systemctl daemon-reload
-sudo systemctl enable x11vnc
-sudo systemctl start x11vnc
-sudo systemctl status x11vnc
+sudo systemctl enable "vncserver@$DISPLAY_NUM.service"
+sudo systemctl start "vncserver@$DISPLAY_NUM.service"
 
-echo '[Seat:*]
-autologin-user=lubuntu
-autologin-user-timeout=0
-autologin-session=Lubuntu
-greeter-session=lightdm-gtk-greeter' | sudo tee /etc/lightdm/lightdm.conf > /dev/null
-sudo ln -sf /dev/null ~/.xsession-errors
-
-sudo mkdir -p ~/.config/lxsession/Lubuntu
-sudo tee ~/.config/lxsession/Lubuntu/autostart > /dev/null <<EOF
-@xset s off
-@xset -dpms
-@xset s noblank
-@lxsession -s Lubuntu -e LXDE
-EOF
-
-mkdir -p ~/.config/autostart
-echo -e "[Desktop Entry]\nHidden=true" > ~/.config/autostart/xscreensaver.desktop
-
-sudo apt remove --purge -y audacious gnome-mpv gnome-mines gnome-sudoku xpad simple-scan guvcview lxmusic sylpheed pidgin transmission-gtk xfburn
-sudo apt autoremove -y
-sudo apt clean
-
-sudo systemctl stop cups
-sudo systemctl disable cups
-
-#sudo systemctl stop lightdm
-#sudo systemctl disable lightdm
-#reboot
-
-VNC_PASS="pas123"
-https://archive.ubuntu.com/ubuntu/dists/bionic-updates/main/installer-amd64/current/images/netboot/mini.iso
+echo "VNC server untuk user $active_user sudah aktif di display :$DISPLAY_NUM"
+echo "$s (port $((5900 + DISPLAY_NUM))) dengan password: $VNC_PASS"
