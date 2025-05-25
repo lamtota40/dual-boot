@@ -38,6 +38,20 @@ sudo apt autoremove -y
 
 sudo reboot
 
+
+
+sudo systemctl disable lightdm
+sudo systemctl stop lightdm
+sudo apt install tigervnc-standalone-server tigervnc-common -y
+
+
+
+
+
+
+
+
+
 sudo apt install lightdm openbox-lxde-session -y
 sudo dpkg-reconfigure lightdm
 cat /etc/X11/default-display-manager
