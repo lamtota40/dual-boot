@@ -4,7 +4,8 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install openssh-server -y
 #desktop
-sudo apt install -y lxde xinit xorg lightdm openbox-lxde-session
+sudo apt install --no-install-recommends xinit xorg lightdm openbox lxde-core lxsession lxpanel pcmanfm lxterminal
+#sudo apt install -y lxde xinit xorg lightdm openbox-lxde-session
 
 echo "exec startlxde" > ~/.xsession
 chmod +x ~/.xsession
@@ -17,7 +18,7 @@ user-session=LXDE
 EOF
 
 #desktop until
-sudo apt install pcmanfm lxterminal leafpad lxtask network-manager-gnome file-roller -y
+sudo apt install pcmanfm lxterminal lxtask file-roller -y
 
 sudo add-apt-repository -y ppa:mozillateam/ppa
 sudo apt update
@@ -32,10 +33,6 @@ sudo snap install notepad-plus-plus
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 sudo systemctl restart ssh
-
-# Aktifkan network manager
-sudo systemctl enable NetworkManager
-sudo systemctl start NetworkManager
 
 # Autoremove & reboot
 sudo apt autoremove -y
