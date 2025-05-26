@@ -41,19 +41,22 @@ print
 rm 3
 mklabel msdos
 mkpart primary ntfs 1MiB 13GiB
-set 1 boot on
 mkpart primary ext4 13GiB 28GiB
 mkpart primary ntfs 28GiB 38GiB
+set 1 boot on
 mkpart primary linux-swap 38GiB 100%
 quit
 
 # === KONFIGURASI ===
-mkfs.vfat -F 32 "/dev/vda3" || exit 1
+mkfs.vfat -F 32 "/dev/vda3"
 mkdir -p "/mnt/vda3"
-mount "/dev/vda3" "/mnt/vda3" || exit 1
-if [ ! -f "win-xp.iso" ]; then
-  wget https://archive.org/download/WinXPProSP3x86/en_windows_xp_professional_with_service_pack_3_x86_cd_vl_x14-73974.iso -O win-xp.iso
+mount "/dev/vda3" "/mnt/vda3"
+if [ ! -f "/mnt/vda3/win-xp.iso" ]; then
+    wget https://archive.org/download/WinXPProSP3x86/en_windows_xp_professional_with_service_pack_3_x86_cd_vl_x14-73974.iso -O "/mnt/vda3/win-xp.iso"
+else
+    echo "File win-xp.iso sudah ada di /mnt/vda3."
 fi
+
 cp "/usr/lib/syslinux/memdisk" "/mnt/vda3/" || { echo "!! memdisk tidak ditemukan!"; exit 1; }
 
 mkdir -p "/mnt/vda3/boot/grub"
@@ -67,7 +70,7 @@ menuentry "Install Windows XP dari ISO" {
 }
 EOF
 
-grub-install --target=i386-pc --boot-directory="/mnt/vda3/boot" "/dev/vda" || exit 1
+grub-install --target=i386-pc --boot-directory="/mnt/vda3/boot" "/dev/vda"
 ############################################
 sudo apt update
 sudo apt install grub-pc-bin grub-common syslinux dosfstools
