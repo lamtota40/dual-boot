@@ -56,6 +56,13 @@ startlxde &
 EOF
 sudo chmod +x ~/.vnc/xstartup
 
+sudo chown -R "$active_user:$active_user" "$HOME_DIR"
+sudo rm -f "$HOME_DIR/.vnc/*.pid"
+sudo rm -f "$HOME_DIR/.Xauthority"
+sudo mkdir -p "$HOME_DIR/.vnc"
+sudo chown -R "$active_user:$active_user" "$HOME_DIR/.vnc"
+
+
 # Buat systemd vnc server
 sudo tee /etc/systemd/system/vncserver@.service > /dev/null <<EOF
 [Unit]
