@@ -35,8 +35,8 @@ sudo grub-reboot "$GRML_ENTRY"
 
 ######################################################
 
-
-sudo parted /dev/vda
+lsblk
+sudo parted /dev/sda
 print
 rm 3
 mklabel msdos
@@ -48,9 +48,9 @@ mkpart primary linux-swap 38GiB 100%
 quit
 
 # === KONFIGURASI ===
-mkfs.vfat -F 32 "/dev/vda3"
-mkdir -p "/mnt/vda3"
-mount "/dev/vda3" "/mnt/vda3"
+mkfs.vfat -F 32 "/dev/sda2"
+mkdir -p "/mnt/sda2"
+mount "/dev/sda2" "/mnt/sda2"
 if [ ! -f "/mnt/vda3/win-xp.iso" ]; then
     wget https://archive.org/download/WinXPProSP3x86/en_windows_xp_professional_with_service_pack_3_x86_cd_vl_x14-73974.iso -O "/mnt/vda3/win-xp.iso"
 else
