@@ -11,8 +11,9 @@ sudo apt install openssh-server -y
 #desktop
 sudo apt install -y lxde-core xinit xorg lightdm openbox lxsession lxpanel pcmanfm lxterminal file-roller -y
 
-echo "exec startlxde" > ~/.xsession
-chmod +x ~/.xsession
+echo "exec startlxde" | sudo tee "$HOME_DIR/.xsession" > /dev/null
+sudo chmod +x "$HOME_DIR/.xsession"
+sudo chown "$active_user:$active_user" "$HOME_DIR/.xsession"
 
 if [ ! -f /etc/lightdm/lightdm.conf.bak ]; then
     sudo cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
@@ -55,12 +56,14 @@ sudo rm -f "$HOME_DIR/.vnc/*.pid"
 sudo rm -f "$HOME_DIR/.Xauthority"
 sudo chown -R "$active_user:$active_user" "$HOME_DIR/.vnc"
 
-sudo bash -c "cat > ~/.vnc/xstartup" <<EOF
+sudo tee "$HOME_DIR/.vnc/xstartup" > /dev/null <<EOF
 #!/bin/bash
 xrdb \$HOME/.Xresources
 startlxde &
 EOF
-sudo chmod +x ~/.vnc/xstartup
+
+sudo chmod +x "$HOME_DIR/.vnc/xstartup"
+sudo chown "$active_user:$active_user" "$HOME_DIR/.vnc/xstartup"
 
 # Buat systemd vnc server
 sudo tee /etc/systemd/system/vncserver@.service > /dev/null <<EOF
@@ -84,6 +87,8 @@ EOF
 # Reload systemd dan aktifkan service
 sudo systemctl daemon-reload
 sudo systemctl enable "vncserver@$DISPLAY_NUM.service"
+sudo systemctl enable lightdm
 
 echo "VNC server untuk user $active_user sudah aktif di display :$DISPLAY_NUM"
-echo "$s (port $((5900 + DISPLAY_NUM))) dengan password: $VNC_PASS"
+echo "VNC aktif di port $((5900 + DISPLAY_NUM)) dengan password: $VNC_PASS"
+
