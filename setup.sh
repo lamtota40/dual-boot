@@ -11,10 +11,10 @@ sudo mkdir -p /boot/grml
 ARCH=$(uname -m)
 if [[ "$ARCH" == "x86_64" ]]; then
     echo "Terdeteksi sistem 64-bit"
-    if [ ! -f /boot/grml/grml64-small_2024.02.iso ]; then
-    sudo wget https://mirror.kku.ac.th/grml/grml64-small_2024.02.iso -P /boot/grml/
+    if [ ! -f /boot/grml/grml-small-2024.12-amd64.iso ]; then
+    sudo wget https://mirror-hk.koddos.net/grml/grml-small-2024.12-amd64.iso -P /boot/grml/
     fi
-    GRML_ENTRY='Grml Rescue System (grml64-small_2024.02.iso)'
+    GRML_ENTRY='Grml Rescue System (grml-small-2024.12-amd64.iso)'
 elif [[ "$ARCH" == "i386" || "$ARCH" == "i686" ]]; then
     echo "Terdeteksi sistem 32-bit"
     if [ ! -f /boot/grml/grml32-small_2024.02.iso ]; then
