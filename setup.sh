@@ -47,6 +47,15 @@ set 1 boot on
 mkpart primary linux-swap 38GiB 100%
 quit
 
+lsblk
+sudo parted /dev/sda
+print
+mklabel msdos
+mkpart primary ntfs 1MiB 10GiB
+mkpart primary ntfs 10GiB 100%
+set 2 boot on
+quit
+
 # === KONFIGURASI ===
 mkfs.vfat -F 32 "/dev/sda2"
 mkdir -p "/mnt/sda2"
