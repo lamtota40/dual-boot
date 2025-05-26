@@ -35,16 +35,19 @@ sudo grub-reboot "$GRML_ENTRY"
 
 ########################################################
 
+
+
+quit
+
 sudo parted /dev/vda
-unit GiB
 print
 rm 3
 mklabel msdos
-mkpart primary ntfs 1 14
-mkpart primary ext4 14 29
-set 2 boot on
-mkpart primary ntfs 29 39
-mkpart primary linux-swap 39 41
+mkpart primary ntfs 1MiB 13GiB
+set 1 boot on
+mkpart primary ext4 13GiB 28GiB
+mkpart primary ntfs 28GiB 38GiB
+mkpart primary linux-swap 38GiB 100%
 quit
 
 # === KONFIGURASI ===
@@ -52,10 +55,8 @@ mkfs.vfat -F 32 "/dev/vda3" || exit 1
 mkdir -p "/mnt/vda3"
 mount "/dev/vda3" "/mnt/vda3" || exit 1
 if [ ! -f "win-xp.iso" ]; then
-  echo "!! File win-xp.iso tidak ditemukan di direktori saat ini!"
-  exit 1
+  wget https://archive.org/download/WinXPProSP3x86/en_windows_xp_professional_with_service_pack_3_x86_cd_vl_x14-73974.iso -O win-xp.iso
 fi
-cp "win-xp.iso" "/mnt/vda3/"
 cp "/usr/lib/syslinux/memdisk" "/mnt/vda3/" || { echo "!! memdisk tidak ditemukan!"; exit 1; }
 
 mkdir -p "/mnt/vda3/boot/grub"
