@@ -52,15 +52,15 @@ mkfs.vfat -F 32 "/dev/sda2"
 mkdir -p "/mnt/sda2"
 mount "/dev/sda2" "/mnt/sda2"
 if [ ! -f "/mnt/vda3/win-xp.iso" ]; then
-    wget https://archive.org/download/WinXPProSP3x86/en_windows_xp_professional_with_service_pack_3_x86_cd_vl_x14-73974.iso -O "/mnt/vda3/win-xp.iso"
+    wget https://archive.org/download/WinXPProSP3x86/en_windows_xp_professional_with_service_pack_3_x86_cd_vl_x14-73974.iso -O "/mnt/sda2/win-xp.iso"
 else
-    echo "File win-xp.iso sudah ada di /mnt/vda3."
+    echo "File win-xp.iso sudah ada di /mnt/sda2."
 fi
 
-cp "/usr/lib/syslinux/memdisk" "/mnt/vda3/" || { echo "!! memdisk tidak ditemukan!"; exit 1; }
+cp "/usr/lib/syslinux/memdisk" "/mnt/sda2/" || { echo "!! memdisk tidak ditemukan!"; exit 1; }
 
-mkdir -p "/mnt/vda3/boot/grub"
-cat > "/mnt/vda3/boot/grub/grub.cfg" <<EOF
+mkdir -p "/mnt/sda2/boot/grub"
+cat > "/mnt/sda2/boot/grub/grub.cfg" <<EOF
 set timeout=5
 set default=0
 
@@ -70,7 +70,7 @@ menuentry "Install Windows XP dari ISO" {
 }
 EOF
 
-grub-install --target=i386-pc --boot-directory="/mnt/vda3/boot" "/dev/vda"
+grub-install --target=i386-pc --boot-directory="/mnt/sda2/boot" "/dev/sda"
 ############################################
 sudo apt update
 sudo apt install grub-pc-bin grub-common syslinux dosfstools
