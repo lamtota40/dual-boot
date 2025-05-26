@@ -33,11 +33,8 @@ sudo update-grub
 sudo grub-reboot "$GRML_ENTRY"
 
 
-########################################################
+######################################################
 
-
-
-quit
 
 sudo parted /dev/vda
 print
