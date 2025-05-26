@@ -48,6 +48,7 @@ $VNC_PASS
 n
 EOF
 
+sudo vncserver -kill :*
 sudo mkdir -p "$HOME_DIR/.vnc"
 sudo chown -R "$active_user:$active_user" "$HOME_DIR"
 sudo rm -f "$HOME_DIR/.vnc/*.pid"
