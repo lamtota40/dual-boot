@@ -50,6 +50,7 @@ quit
 lsblk
 sudo parted /dev/sda
 print
+rm all
 mklabel msdos
 mkpart primary ntfs 1MiB 10GiB
 mkpart primary ntfs 10GiB 100%
