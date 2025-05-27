@@ -20,9 +20,11 @@ else
     echo "File win-xp.iso sudah ada."
 fi
 
-# Download grub.exe dari grub4dos dan firadisk.iso
+# Download grub.exe dari grub4dos dan firadisk.zip
 wget -O /mnt/sda2/grub.exe "https://github.com/lamtota40/dual-boot/raw/refs/heads/main/winxp/grub.exe"
 wget -O /mnt/sda2/firadisk.zip "https://github.com/lamtota40/dual-boot/raw/refs/heads/main/winxp/firadisk.zip"
+command -v unzip >/dev/null || (apt update && apt install -y unzip)
+unzip /mnt/sda2/firadisk.zip -d /mnt/sda2/
 
 # Pasang GRUB untuk i386-pc
 mkdir -p /mnt/sda2/boot/grub
