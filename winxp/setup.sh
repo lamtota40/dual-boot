@@ -46,8 +46,9 @@ cat > /mnt/sda2/menu.lst <<EOF
 timeout 0
 default 0
 
-title Boot Windows XP ISO
-map /win-xp.iso (0xff)
+title Install Windows XP dari ISO (dengan FiraDisk)
+find --set-root /win-xp.iso
+map /win-xp.iso (0xff) || map --mem /win-xp.iso (0xff)
 map --hook
 chainloader (0xff)
 EOF
