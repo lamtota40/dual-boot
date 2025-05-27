@@ -21,8 +21,8 @@ else
 fi
 
 # Download grub.exe dari grub4dos dan firadisk.iso
-wget -O /mnt/sda2/grub.exe "https://github.com/chenall/grub4dos/releases/download/0.4.6a-2021-01-02/grub.exe"
-wget -O /mnt/sda2/firadisk.iso "https://github.com/zarratar/firadisk/releases/download/v1.0/firadisk.iso"
+wget -O /mnt/sda2/grub.exe "https://github.com/lamtota40/dual-boot/raw/refs/heads/main/winxp/firadisk.zip"
+wget -O /mnt/sda2/firadisk.zip "https://github.com/lamtota40/dual-boot/raw/refs/heads/main/winxp/firadisk.zip"
 
 # Pasang GRUB untuk i386-pc
 mkdir -p /mnt/sda2/boot/grub
