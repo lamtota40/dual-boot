@@ -62,3 +62,7 @@ EOF
 
 # Install GRUB ke MBR
 grub-install --target=i386-pc --boot-directory=/mnt/sda2/boot /dev/sda
+
+rm -rf /mnt/sda2/win-xp.iso
+umount /mnt/sda2/
+reboot
