@@ -4,7 +4,7 @@ lsblk
 # Siapkan partisi
 sudo parted /dev/sda <<EOF
 mklabel msdos
-mkpart primary fat32 1MiB 10GiB
+mkpart primary ntfs 1MiB 10GiB
 mkpart primary fat32 10GiB 100%
 set 2 boot on
 quit
