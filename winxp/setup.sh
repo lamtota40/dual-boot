@@ -25,8 +25,9 @@ wget -O /mnt/sda2/grub.exe "https://github.com/lamtota40/dual-boot/raw/refs/head
 wget -O /mnt/sda2/firadisk.zip "https://github.com/lamtota40/dual-boot/raw/refs/heads/main/winxp/firadisk.zip"
 
 # Ekstrak firadisk.zip (pastikan unzip tersedia)
-command -v unzip >/dev/null || (apt update && apt install -y unzip)
+#command -v unzip >/dev/null || (apt update && apt install -y unzip)
 unzip /mnt/sda2/firadisk.zip -d /mnt/sda2/
+rm -f /mnt/sda2/firadisk.zip
 
 # Buat direktori GRUB dan tulis konfigurasi chainload ke grub4dos
 mkdir -p /mnt/sda2/boot/grub
