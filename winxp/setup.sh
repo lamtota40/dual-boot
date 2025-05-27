@@ -1,4 +1,4 @@
-# File: xp-boot-rev1.sh
+# File: xp-boot-rev2.sh
 
 lsblk
 sudo parted /dev/sda <<EOF
@@ -20,28 +20,29 @@ else
     echo "File win-xp.iso sudah ada."
 fi
 
-# Download grub.exe dari grub4dos dan firadisk.zip
+# Download grub.exe dan firadisk.zip dari GitHub kamu
 wget -O /mnt/sda2/grub.exe "https://github.com/lamtota40/dual-boot/raw/refs/heads/main/winxp/grub.exe"
 wget -O /mnt/sda2/firadisk.zip "https://github.com/lamtota40/dual-boot/raw/refs/heads/main/winxp/firadisk.zip"
+
+# Ekstrak firadisk.zip (pastikan unzip tersedia)
 command -v unzip >/dev/null || (apt update && apt install -y unzip)
 unzip /mnt/sda2/firadisk.zip -d /mnt/sda2/
 
-# Pasang GRUB untuk i386-pc
+# Buat direktori GRUB dan tulis konfigurasi chainload ke grub4dos
 mkdir -p /mnt/sda2/boot/grub
 cat > /mnt/sda2/boot/grub/grub.cfg <<EOF
 set timeout=5
 set default=0
 
-menuentry "Install Windows XP dari ISO (via grub4dos)" {
-    insmod ntfs
-    ntldr /grub.exe
+menuentry "Install Windows XP via GRUB4DOS" {
+    chainloader /grub.exe
 }
 EOF
 
-# Install GRUB ke MBR
+# Install GRUB2 ke MBR
 grub-install --target=i386-pc --boot-directory=/mnt/sda2/boot /dev/sda
 
-# Siapkan menu.lst untuk grub4dos
+# Tulis konfigurasi menu.lst untuk grub4dos
 cat > /mnt/sda2/menu.lst <<EOF
 timeout 0
 default 0
