@@ -31,7 +31,7 @@ rm -rf /mnt/tmpiso
 wget -O /mnt/sda2/grub.exe "https://github.com/lamtota40/dual-boot/raw/refs/heads/main/winxp/grub.exe"
 wget -O /mnt/sda2/firadisk.zip "https://github.com/lamtota40/dual-boot/raw/refs/heads/main/winxp/firadisk.zip"
 unzip /mnt/sda2/firadisk.zip -d /mnt/sda2/
-rm -f /mnt/sda2/firadisk.zip
+rm -rf /mnt/sda2/firadisk.zip
 
 # Copy ntldr dan ntdetect.com dari i386 ke root
 cp /mnt/sda2/I386/NTLDR /mnt/sda2/
