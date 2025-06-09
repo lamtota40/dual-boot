@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo apt update
+#sudo apt upgrade -y
 sudo apt install grml-rescueboot zsh -y
 sudo mkdir -p /boot/grml
  if [ ! -f /boot/grml/grml-small-2024.12-amd64.iso ]; then
