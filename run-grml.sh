@@ -10,7 +10,7 @@ sudo mkdir -p /boot/grml
  
 sudo tee /grml.sh > /dev/null << 'EOF'
 #!/bin/bash
-echo "Running..." >> /tmp/grml.lo
+echo "Running..." >> /tmp/grml.log
 touch /sukses.sh
 EOF
 sudo chmod +x /grml.sh
