@@ -15,9 +15,7 @@ echo "exec startlxde" | sudo tee "$HOME_DIR/.xsession" > /dev/null
 sudo chmod +x "$HOME_DIR/.xsession"
 sudo chown "$active_user:$active_user" "$HOME_DIR/.xsession"
 
-if [ ! -f /etc/lightdm/lightdm.conf.bak ]; then
-    sudo cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
-fi
+[ -f /etc/lightdm/lightdm.conf ] && sudo cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
 sudo bash -c "cat > /etc/lightdm/lightdm.conf" <<EOF
 [Seat:*]
 user-session=LXDE
