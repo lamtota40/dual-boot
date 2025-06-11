@@ -5,7 +5,7 @@ sudo apt update
 sudo apt install grml-rescueboot zsh -y
 sudo mkdir -p /boot/grml
  if [ ! -f /boot/grml/grml-small-2024.12-amd64.iso ]; then
-  sudo wget https://mirror-hk.koddos.net/grml/grml-small-2024.12-amd64.iso -P /boot/grml/
+  sudo wget https://mirror-hk.koddos.net/grml/grml-small-2024.12-amd64.iso -P /boot/grml/ --no-check-certificate
  fi
  
 sudo tee /grml.sh > /dev/null << 'EOF'
@@ -17,6 +17,7 @@ sudo chmod +x /grml.sh
 
 sudo bash -c "echo 'CUSTOM_BOOTOPTIONS=\"ssh=pas123 dns=8.8.8.8,8.8.4.4 netscript=raw.githubusercontent.com/lamtota40/install-ulang/main/autorun-grml.sh scripts=/grml.sh toram\"' >> /etc/default/grml-rescueboot"
 sudo update-grub
-read -p "tekan [ENTER] untuk reboot"
 sudo grub-reboot 'Grml Rescue System (grml-small-2024.12-amd64.iso)'
+read -p "tekan [ENTER] untuk reboot"
 sudo reboot
+
