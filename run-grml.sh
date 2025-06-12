@@ -14,10 +14,8 @@ echo "Running..." >> /tmp/grml.log
 touch /sukses.sh
 EOF
 sudo chmod +x /grml.sh
-mkdir -p /grml
-cp /grml.sh /grml/grml.sh
 
-sudo bash -c "echo 'CUSTOM_BOOTOPTIONS=\"ssh=pas123 dns=8.8.8.8,8.8.4.4 netscript=raw.githubusercontent.com/lamtota40/install-ulang/main/autorun-grml.sh myconf=/dev/vda3 toram\"' >> /etc/default/grml-rescueboot"
+sudo bash -c "echo 'CUSTOM_BOOTOPTIONS=\"ssh=pas123 dns=8.8.8.8,8.8.4.4 netscript=raw.githubusercontent.com/lamtota40/install-ulang/main/autorun-grml.sh myconfig=/dev/vda3 scripts=/grml.sh toram\"' >> /etc/default/grml-rescueboot"
 sudo update-grub
 sudo grub-reboot 'Grml Rescue System (grml-small-2024.12-amd64.iso)'
 read -p "tekan [ENTER] untuk reboot"
