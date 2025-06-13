@@ -7,7 +7,11 @@ HOME_DIR="$(eval echo ~$active_user)"
 
 sudo apt update
 sudo apt upgrade -y
-sudo apt install openssh-server -y
+#sudo apt install openssh-server -y
+#sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+#sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
+#sudo systemctl restart ssh
+
 #desktop
 sudo apt install -y lxde-core xinit xorg lightdm openbox lxsession lxpanel pcmanfm lxterminal file-roller -y
 
@@ -31,10 +35,6 @@ sudo apt install gnome-software-plugin-snap -y
 #sudo snap install snap-store
 #sudo snap install notepad-plus-plus
 
-sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
-sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
-sudo systemctl restart ssh
-
 # Autoremove & reboot
 sudo apt autoremove -y
 
@@ -50,8 +50,8 @@ EOF
 sudo vncserver -kill :*
 sudo mkdir -p "$HOME_DIR/.vnc"
 sudo chown -R "$active_user:$active_user" "$HOME_DIR"
-sudo rm -f "$HOME_DIR/.vnc/*.pid"
-sudo rm -f "$HOME_DIR/.Xauthority"
+sudo rm -rf "$HOME_DIR/.vnc/*.pid"
+sudo rm -rf "$HOME_DIR/.Xauthority"
 sudo chown -R "$active_user:$active_user" "$HOME_DIR/.vnc"
 
 sudo tee "$HOME_DIR/.vnc/xstartup" > /dev/null <<EOF
