@@ -9,8 +9,11 @@ sudo add-apt-repository -y ppa:mozillateam/ppa
 sudo apt update
 sudo apt install firefox -y
 
-#desktop
-sudo apt install -y lxde-core xinit xorg lightdm dbus-x11 openbox lxsession lxpanel pcmanfm lxterminal file-roller -y
+#app inti lxde
+apt install --no-install-recommends lxde-core -y
+apt install lxterminal policykit-1 notification-daemon -y
+
+sudo apt install -y xinit xorg lightdm dbus-x11 openbox lxsession lxpanel pcmanfm file-roller -y
 
 echo "exec startlxde" | sudo tee "$HOME_DIR/.xsession" > /dev/null
 sudo chmod +x "$HOME_DIR/.xsession"
