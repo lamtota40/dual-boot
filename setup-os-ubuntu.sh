@@ -83,7 +83,7 @@ EOF
 # Reload systemd dan aktifkan service
 sudo systemctl daemon-reload
 sudo systemctl enable "vncserver@$DISPLAY_NUM.service"
-sudo systemctl enable lightdm
+#sudo systemctl enable lightdm
 
 echo "VNC server untuk user $active_user sudah aktif di display :$DISPLAY_NUM"
 echo "VNC aktif di port $((5900 + DISPLAY_NUM)) dengan password: $VNC_PASS"
