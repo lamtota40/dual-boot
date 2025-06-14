@@ -14,6 +14,8 @@ sudo apt install --no-install-recommends lxde-core -y
 sudo apt install lightdm-gtk-greeter lxterminal policykit-1 notification-daemon -y
 sudo apt install -y xinit xorg lightdm dbus-x11 openbox lxsession lxpanel pcmanfm file-roller -y
 
+sudo sed -i 's|^Exec=lxterminal$|Exec=lxterminal --command '\''bash --login'\''|' /usr/share/applications/lxterminal.desktop
+
 echo "exec startlxde" | sudo tee "$HOME_DIR/.xsession" > /dev/null
 sudo chmod +x "$HOME_DIR/.xsession"
 sudo chown "$active_user:$active_user" "$HOME_DIR/.xsession"
