@@ -42,7 +42,6 @@ EOF
 
 sudo vncserver -kill :*
 sudo rm -rf "$HOME_DIR/.vnc/*.pid"
-sudo rm -rf "$HOME_DIR/.Xauthority"
 
 sudo mkdir -p "$HOME_DIR/.vnc"
 sudo chown -R "$active_user:$active_user" "$HOME_DIR"
