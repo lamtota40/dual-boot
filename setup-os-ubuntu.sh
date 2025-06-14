@@ -33,6 +33,10 @@ EOF
 
 sudo apt install tigervnc-standalone-server tigervnc-common -y
 
+touch ~/.Xauthority
+sudo chmod 600 ~/.Xauthority
+sudo chown "$active_user:$active_user" "$HOME_DIR/.Xauthority"
+
 # Setup password VNC dan buat sesi awal
 sudo vncserver ---pretend-input-tty <<EOF
 $VNC_PASS
@@ -42,9 +46,6 @@ EOF
 
 sudo vncserver -kill :*
 sudo rm -rf "$HOME_DIR/.vnc/*.pid"
-touch ~/.Xauthority
-sudo chmod 600 ~/.Xauthority
-sudo chown "$active_user:$active_user" "$HOME_DIR/.Xauthority"
 
 sudo mkdir -p "$HOME_DIR/.vnc"
 sudo chown -R "$active_user:$active_user" "$HOME_DIR"
