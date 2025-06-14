@@ -1,4 +1,4 @@
-#!/bin/bash
+www#!/bin/bash
 
 VNC_PASS="pas123"
 DISPLAY_NUM=1
@@ -83,6 +83,5 @@ sudo systemctl daemon-reload
 sudo systemctl enable "vncserver@$DISPLAY_NUM.service"
 #sudo systemctl enable lightdm
 
-echo "VNC server untuk user $active_user sudah aktif di display :$DISPLAY_NUM"
-echo "VNC aktif di port $((5900 + DISPLAY_NUM)) dengan password: $VNC_PASS"
-
+echo "VNC server sudah selesai di install"
+echo "Silahkan catat VNC SERVER IP Address: $(wget -qO- https://ipinfo.io/ip) Port: $((5900 + DISPLAY_NUM)) dengan Password: $VNC_PASS"
