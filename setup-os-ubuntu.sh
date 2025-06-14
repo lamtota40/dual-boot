@@ -13,7 +13,7 @@ sudo apt upgrade -y
 #sudo systemctl restart ssh
 
 #desktop
-sudo apt install -y lxde-core xinit xorg lightdm openbox lxsession lxpanel pcmanfm lxterminal file-roller -y
+sudo apt install -y lxde-core xinit xorg lightdm dbus-x11 openbox lxsession lxpanel pcmanfm lxterminal file-roller -y
 
 echo "exec startlxde" | sudo tee "$HOME_DIR/.xsession" > /dev/null
 sudo chmod +x "$HOME_DIR/.xsession"
