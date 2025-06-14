@@ -1,4 +1,4 @@
-www#!/bin/bash
+#!/bin/bash
 
 VNC_PASS="pas123"
 DISPLAY_NUM=1
