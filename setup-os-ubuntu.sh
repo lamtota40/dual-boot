@@ -5,12 +5,9 @@ DISPLAY_NUM=1
 active_user="$(logname)"
 HOME_DIR="$(eval echo ~$active_user)"
 
+sudo add-apt-repository -y ppa:mozillateam/ppa
 sudo apt update
-sudo apt upgrade -y
-#sudo apt install openssh-server -y
-#sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
-#sudo sed -i '/^#\?PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
-#sudo systemctl restart ssh
+sudo apt install firefox -y
 
 #desktop
 sudo apt install -y lxde-core xinit xorg lightdm dbus-x11 openbox lxsession lxpanel pcmanfm lxterminal file-roller -y
@@ -24,10 +21,6 @@ sudo bash -c "cat > /etc/lightdm/lightdm.conf" <<EOF
 [Seat:*]
 user-session=LXDE
 EOF
-
-#sudo add-apt-repository -y ppa:mozillateam/ppa
-#sudo apt update
-#sudo apt install firefox -y
 
 #desktop until2
 #sudo apt install -y onboard gparted snapd zsh curl jq
