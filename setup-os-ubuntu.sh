@@ -11,7 +11,7 @@ sudo apt install firefox -y
 
 #app inti lxde
 sudo apt install --no-install-recommends lxde-core -y
-sudo apt instal lightdm-gtk-greeter lxterminal policykit-1 notification-daemon -y
+sudo apt install lightdm-gtk-greeter lxterminal policykit-1 notification-daemon -y
 sudo apt install -y xinit xorg lightdm dbus-x11 openbox lxsession lxpanel pcmanfm file-roller -y
 
 echo "exec startlxde" | sudo tee "$HOME_DIR/.xsession" > /dev/null
