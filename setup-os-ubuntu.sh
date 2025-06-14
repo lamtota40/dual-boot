@@ -25,18 +25,15 @@ sudo bash -c "cat > /etc/lightdm/lightdm.conf" <<EOF
 user-session=LXDE
 EOF
 
-sudo add-apt-repository -y ppa:mozillateam/ppa
-sudo apt update
-sudo apt install firefox -y
+#sudo add-apt-repository -y ppa:mozillateam/ppa
+#sudo apt update
+#sudo apt install firefox -y
 
 #desktop until2
-sudo apt install -y onboard gparted snapd zsh curl jq
-sudo apt install gnome-software-plugin-snap -y
+#sudo apt install -y onboard gparted snapd zsh curl jq
+#sudo apt install gnome-software-plugin-snap -y
 #sudo snap install snap-store
 #sudo snap install notepad-plus-plus
-
-# Autoremove & reboot
-sudo apt autoremove -y
 
 sudo apt install tigervnc-standalone-server tigervnc-common -y
 
@@ -48,10 +45,11 @@ n
 EOF
 
 sudo vncserver -kill :*
-sudo mkdir -p "$HOME_DIR/.vnc"
-sudo chown -R "$active_user:$active_user" "$HOME_DIR"
 sudo rm -rf "$HOME_DIR/.vnc/*.pid"
 sudo rm -rf "$HOME_DIR/.Xauthority"
+
+sudo mkdir -p "$HOME_DIR/.vnc"
+sudo chown -R "$active_user:$active_user" "$HOME_DIR"
 sudo chown -R "$active_user:$active_user" "$HOME_DIR/.vnc"
 
 sudo tee "$HOME_DIR/.vnc/xstartup" > /dev/null <<EOF
