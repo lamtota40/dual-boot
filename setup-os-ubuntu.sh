@@ -53,8 +53,10 @@ sudo chown -R "$active_user:$active_user" "$HOME_DIR"
 sudo chown -R "$active_user:$active_user" "$HOME_DIR/.vnc"
 
 sudo tee "$HOME_DIR/.vnc/xstartup" > /dev/null <<EOF
-#!/bin/bash
-xrdb \$HOME/.Xresources
+export HOME=$(getent passwd "$(whoami)" | cut -d: -f6)
+cd "$HOME"
+[ -r "$HOME/.Xresources" ] && xrdb "$HOME/.Xresources"
+[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 startlxde &
 EOF
 
