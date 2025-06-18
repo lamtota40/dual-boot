@@ -6,8 +6,8 @@ active_user="$(logname)"
 HOME_DIR="$(eval echo ~$active_user)"
 
 sudo add-apt-repository -y ppa:mozillateam/ppa
+echo | sudo add-apt-repository ppa:notepadqq-team/notepadqq
 sudo apt update
-sudo apt install firefox -y
 
 #app inti lxde
 sudo apt install --no-install-recommends lxde-core -y
@@ -27,10 +27,7 @@ user-session=LXDE
 EOF
 
 #desktop until2
-#sudo apt install -y onboard gparted snapd zsh curl jq
-#sudo apt install gnome-software-plugin-snap -y
-#sudo snap install snap-store
-#sudo snap install notepad-plus-plus
+sudo apt install -y onboard gparted firefox notepadqq
 
 sudo apt install tigervnc-standalone-server tigervnc-common -y
 
