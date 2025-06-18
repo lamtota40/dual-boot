@@ -62,6 +62,7 @@ EOF
 
 sudo chmod +x "$HOME_DIR/.vnc/xstartup"
 sudo chown "$active_user:$active_user" "$HOME_DIR/.vnc/xstartup"
+export DISPLAY=:1
 
 # Buat systemd vnc server
 sudo tee /etc/systemd/system/vncserver@.service > /dev/null <<EOF
