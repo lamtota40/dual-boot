@@ -12,7 +12,7 @@ sudo apt install firefox -y
 #app inti lxde
 sudo apt install --no-install-recommends lxde-core -y
 sudo apt install lightdm-gtk-greeter lxterminal policykit-1 notification-daemon -y
-sudo apt install -y xinit xorg lightdm dbus-x11 openbox lxsession lxpanel pcmanfm file-roller -y
+sudo apt install -y xinit xorg lightdm dbus-x11 openbox lxsession lxpanel pcmanfm file-roller x11-utils libgtk-3-0 -y
 
 sudo sed -i 's|^Exec=lxterminal$|Exec=lxterminal --command '\''bash --login'\''|' /usr/share/applications/lxterminal.desktop
 
